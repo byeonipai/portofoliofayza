@@ -22,6 +22,6 @@ export const experience: ExperienceItem[] = [
     organization: "Freelance KOL Projects",
     period: "May 2026 - Jun 2026",
     description:
-      "Coordinated around 50 projects from requirement clarification to final delivery, managing revisions, progress, follow-ups, and deadlines.",
+      "Coordinated approximately 50 KOLs within a single campaign period, managing briefs, follow-ups, revisions, and deadlines.",
   },
 ]
