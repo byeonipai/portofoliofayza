@@ -4,14 +4,14 @@ export const experienceHeading = "Experience Summary"
 
 export const experience: ExperienceItem[] = [
   {
-    role: "Digital Service Support & Design Specialist",
-    organization: "Freelance",
+    role: "Digital Service Support & Design",
+    organization: "Freelance Self-Employed",
     period: "May 2023 - Present",
     description:
       "Managed digital service operations, supported users through troubleshooting, and created customized digital materials based on user needs.",
   },
   {
-    role: "Business IT Intern",
+    role: "Business Development Intern",
     organization: "Avalon Star",
     period: "Feb 2026 - Apr 2026",
     description:
