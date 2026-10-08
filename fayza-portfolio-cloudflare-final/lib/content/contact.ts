@@ -19,8 +19,8 @@ export const contact: ContactContent = {
     },
     {
       label: "LinkedIn",
-      value: "linkedin.com/in/fayza-kamila-27106b26b",
-      href: "https://www.linkedin.com/in/fayza-kamila-27106b26b/",
+      value: "linkedin.com/in/fayzakamila",
+      href: "https://www.linkedin.com/in/fayzakamila/",
       icon: "linkedin",
     },
     {
