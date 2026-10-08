@@ -47,8 +47,8 @@ export const hero: Hero = {
 export const about: About = {
   heading: "About Me",
   paragraphs: [
-    "I'm an Information Systems graduate with hands-on experience in requirement analysis, system design, UI/UX, frontend development, and software testing. I enjoy understanding user and business needs and translating them into clear system flows and practical digital solutions.",
-    "My project experience includes requirement documentation, UML and workflow modeling, database design, wireframing and prototyping, frontend implementation, REST API integration, functional testing, API testing, and collaborative system development.",
+    "I'm an Information Systems graduate with project-based experience in requirement analysis, system design, UI/UX, software testing, and web development. I enjoy understanding user and business needs and translating them into structured requirements, clear system workflows, and practical digital solutions.",
+    "My project experience includes requirement documentation, process and workflow modeling, user flows, system design, wireframing and prototyping, REST API integration, functional and API testing, UAT, and collaborative system development.",
   ],
   highlights: [
     "Requirement analysis & documentation",
