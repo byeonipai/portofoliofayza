@@ -46,7 +46,14 @@ export function Navbar() {
   const handleNavClick = () => setOpen(false)
 
   return (
-    <header className={cn("fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-200 ease-out", scrolled || open ? "border-b border-border/70 glass" : "border-b border-transparent")}>
+    <header className={cn(
+      "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-200 ease-out",
+      open
+        ? "border-b border-border bg-background"
+        : scrolled
+          ? "border-b border-border/70 glass"
+          : "border-b border-transparent",
+    )}>
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <a href="#home" className="font-display text-lg font-bold tracking-tight text-foreground transition-colors duration-150 hover:text-primary" onClick={handleNavClick}>
           {profile.logo}<span className="text-primary">.</span>
@@ -62,7 +69,6 @@ export function Navbar() {
           {open ? <X className="size-5" /> : <Menu className="size-5" />}
         </button>
       </nav>
-
       <nav id="mobile-navigation" aria-label="Mobile navigation" data-open={open ? "true" : "false"} inert={!open} className="mobile-menu md:hidden">
         <ul className="mx-auto flex max-w-xl flex-col gap-1 px-5 py-5">
           {navItems.map((item) => <li key={item.href}><a href={item.href} onClick={handleNavClick} aria-current={active === item.href ? "location" : undefined} className={cn("block rounded-xl px-4 py-3.5 text-base font-medium transition-colors duration-150", active === item.href ? "bg-primary/12 text-foreground" : "text-muted-foreground hover:bg-secondary/60 hover:text-foreground")}>{item.label}</a></li>)}
