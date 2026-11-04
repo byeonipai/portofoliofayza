@@ -530,3 +530,50 @@ html[data-motion-ready="true"] .reveal.is-visible { opacity: 1; transform: none;
   }
   .cursor-spotlight { display: none; }
 }
+
+
+/* Animated starfield backdrop for the hero portrait. */
+.stars-background {
+  position: absolute;
+  inset: -12%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: auto;
+  touch-action: pan-y;
+  mask-image: radial-gradient(ellipse at center, black 42%, transparent 82%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 42%, transparent 82%);
+}
+.stars-parallax {
+  position: absolute;
+  inset: -10%;
+  will-change: transform;
+}
+.stars-layer {
+  position: absolute;
+  inset: 0;
+  animation-name: starfield-rise;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.stars-layer-2 { opacity: .78; }
+.stars-layer-3 { opacity: .62; }
+.star-dot {
+  position: absolute;
+  display: block;
+  border-radius: 9999px;
+  background: var(--star-color, #eee8ff);
+  box-shadow: 0 0 7px color-mix(in srgb, var(--star-color, #eee8ff) 75%, transparent);
+  animation: star-twinkle 4.8s ease-in-out infinite;
+}
+@keyframes starfield-rise {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(0, -18%, 0); }
+}
+@keyframes star-twinkle {
+  0%, 100% { opacity: .28; scale: .82; }
+  50% { opacity: 1; scale: 1.18; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stars-layer, .star-dot { animation: none !important; }
+  .stars-parallax { transform: none !important; }
+}
