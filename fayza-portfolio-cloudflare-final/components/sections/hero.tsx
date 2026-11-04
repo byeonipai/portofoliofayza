@@ -2,6 +2,7 @@ import Image from "next/image"
 import { ArrowRight, Download, Sparkles } from "lucide-react"
 import { CtaButton } from "@/components/cta-button"
 import { Reveal } from "@/components/reveal"
+import { StarsBackground } from "@/components/stars-background"
 import { hero, profile } from "@/lib/content"
 
 const ctaIcon = (label: string) => {
@@ -101,12 +102,13 @@ export function Hero() {
         </div>
 
         <Reveal delay={240} variant="scale" className="mx-auto w-full max-w-xs sm:max-w-sm lg:max-w-none">
-          <div className="relative">
+          <div className="relative isolate">
+            <StarsBackground className="pointer-events-auto" speed={42} factor={0.045} />
             <div
               className="ambient-drift absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-primary/18 via-accent/10 to-transparent blur-2xl"
               aria-hidden
             />
-            <div className="relative overflow-hidden rounded-[1.7rem] border border-border/80 bg-card/35 p-2">
+            <div className="relative z-10 overflow-hidden rounded-[1.7rem] border border-border/80 bg-card/35 p-2">
               <div className="relative aspect-[5/4] overflow-hidden rounded-[1.25rem] sm:aspect-[4/5]">
                 <Image
                   src={profile.photo || "/placeholder.svg"}
