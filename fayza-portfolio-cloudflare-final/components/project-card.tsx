@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import { useRef } from "react"
 import { ArrowUpRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import type { Project } from "@/lib/content"
@@ -9,12 +10,32 @@ type ProjectCardProps = { project: Project; onOpen: (project: Project) => void; 
 
 export function ProjectCard({ project, onOpen, variant = "featured" }: ProjectCardProps) {
   const featured = variant === "featured"
+  const cardRef = useRef<HTMLButtonElement>(null)
+
+  const handlePointerMove = (event: React.PointerEvent<HTMLButtonElement>) => {
+    if (event.pointerType !== "mouse" || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return
+    const node = cardRef.current
+    if (!node) return
+    const bounds = node.getBoundingClientRect()
+    const x = (event.clientX - bounds.left) / bounds.width
+    const y = (event.clientY - bounds.top) / bounds.height
+    node.style.setProperty("--pointer-x", (x * 100) + "%")
+    node.style.setProperty("--pointer-y", (y * 100) + "%")
+    node.style.transform = "perspective(1100px) rotateX(" + ((.5-y)*3.2) + "deg) rotateY(" + ((x-.5)*3.2) + "deg) translateY(-6px)"
+  }
+
+  const resetPointer = () => {
+    if (cardRef.current) cardRef.current.style.transform = ""
+  }
+
   return (
-    <button type="button" onClick={() => onOpen(project)} aria-label={"View details for " + project.title}
+    <button ref={cardRef} type="button" onClick={() => onOpen(project)} onPointerMove={handlePointerMove} onPointerLeave={resetPointer}
+      aria-label={"View details for " + project.title}
       className={cn("interactive-card group relative flex w-full flex-col overflow-hidden rounded-3xl border border-border/80 bg-card/45 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background")}>
       <div className={cn("relative w-full overflow-hidden bg-secondary/20", featured ? "aspect-[16/10]" : "aspect-[16/9]")}>
         <Image src={project.thumbnail} alt={project.title + " preview"} fill sizes={featured ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, 33vw"} className="project-card-image object-cover object-top" />
         <div className="absolute inset-0 bg-gradient-to-t from-card/95 via-card/10 to-transparent" aria-hidden />
+        <div className="project-card-shine" aria-hidden />
         <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">
           {project.categories.slice(0, featured ? 3 : 2).map(category => <span key={category} className="rounded-full border border-border/80 bg-background/75 px-2.5 py-0.5 text-[11px] font-medium text-foreground/85 backdrop-blur-md">{category}</span>)}
         </div>

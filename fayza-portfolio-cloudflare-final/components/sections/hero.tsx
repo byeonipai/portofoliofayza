@@ -18,7 +18,7 @@ export function Hero() {
     <section id="home" className="relative scroll-mt-16 pb-14 pt-24 sm:pb-20 sm:pt-32 lg:pt-36">
       <div className="mx-auto grid max-w-6xl items-center gap-9 px-4 sm:gap-12 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-8 lg:px-8">
         <div className="flex flex-col items-start gap-4 sm:gap-6">
-          <Reveal>
+          <Reveal variant="blur">
             <span className="inline-flex max-w-full items-center gap-2 rounded-full border border-primary/25 bg-primary/[0.08] px-3 py-1.5 text-xs font-medium text-primary sm:px-4">
               <Sparkles className="size-3.5 shrink-0" />
               <span className="sm:hidden">System Analysis · UI/UX · Testing</span>
@@ -26,7 +26,7 @@ export function Hero() {
             </span>
           </Reveal>
 
-          <Reveal delay={60}>
+          <Reveal delay={90} variant="left">
             <h1 className="font-display font-bold leading-[1.05] tracking-[-0.045em] text-balance">
               <span className="block text-[clamp(2.4rem,8.3vw,4rem)] sm:text-6xl lg:text-[4.5rem]">
                 {hero.headlineLines[0]}
@@ -37,19 +37,19 @@ export function Hero() {
             </h1>
           </Reveal>
 
-          <Reveal delay={110}>
+          <Reveal delay={220} variant="up">
             <p className="max-w-xl text-pretty text-sm leading-relaxed text-muted-foreground sm:text-lg">
               {hero.subheadline}
             </p>
           </Reveal>
 
-          <Reveal delay={150} className="hidden sm:block">
+          <Reveal delay={320} variant="up" className="hidden sm:block">
             <p className="max-w-xl text-pretty text-sm leading-relaxed text-muted-foreground/85">
               {hero.intro}
             </p>
           </Reveal>
 
-          <Reveal delay={185} className="w-full">
+          <Reveal delay={420} variant="up" className="w-full">
             <div className="grid grid-cols-2 gap-2.5 sm:flex sm:flex-wrap sm:gap-3">
               {primaryActions.map((cta) => (
                 <CtaButton
@@ -100,10 +100,10 @@ export function Hero() {
           </Reveal>
         </div>
 
-        <Reveal delay={130} className="mx-auto w-full max-w-xs sm:max-w-sm lg:max-w-none">
+        <Reveal delay={240} variant="scale" className="mx-auto w-full max-w-xs sm:max-w-sm lg:max-w-none">
           <div className="relative">
             <div
-              className="absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-primary/18 via-accent/10 to-transparent blur-2xl"
+              className="ambient-drift absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-primary/18 via-accent/10 to-transparent blur-2xl"
               aria-hidden
             />
             <div className="relative overflow-hidden rounded-[1.7rem] border border-border/80 bg-card/35 p-2">
@@ -119,7 +119,7 @@ export function Hero() {
                 <div className="absolute inset-0 bg-gradient-to-t from-background/35 via-transparent to-transparent" aria-hidden />
               </div>
             </div>
-            <div className="absolute -bottom-5 -left-4 hidden rounded-2xl border border-border/80 bg-card/90 px-4 py-3 shadow-xl backdrop-blur-xl sm:block">
+            <div className="float-soft absolute -bottom-5 -left-4 hidden rounded-2xl border border-border/80 bg-card/90 px-4 py-3 shadow-xl backdrop-blur-xl sm:block">
               <p className="font-display text-2xl font-bold text-foreground">
                 {profile.name.split(" ")[0]}
               </p>
