@@ -322,3 +322,64 @@ html[data-motion-ready="true"] .reveal.is-visible .hero-photo {
     transform: none;
   }
 }
+
+
+/* Mobile-specific layout refinements. */
+.mobile-menu {
+  position: fixed;
+  top: 4rem;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 49;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-top: 1px solid var(--border);
+  background: oklch(0.15 0.012 285 / 99%);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+}
+
+.modal-panel {
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+@media (max-width: 639px) {
+  html {
+    scroll-padding-top: 4.5rem;
+  }
+
+  .mobile-menu {
+    transform: translateY(-6px);
+  }
+
+  .mobile-menu[data-open="true"] {
+    transform: translateY(0);
+  }
+
+  .modal-panel {
+    max-height: 100dvh;
+    padding-bottom: env(safe-area-inset-bottom);
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
+  }
+
+  .modal-panel .modal-backdrop {
+    backdrop-filter: none;
+  }
+
+  .project-card-image {
+    transition-duration: 180ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu,
+  .modal-panel {
+    transform: none;
+    transition-duration: 120ms;
+  }
+}
