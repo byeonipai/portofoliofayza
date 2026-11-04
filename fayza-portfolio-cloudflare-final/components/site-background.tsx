@@ -2,7 +2,7 @@ import { StarsBackground } from "@/components/stars-background"
 
 export function SiteBackground() {
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 isolate overflow-hidden">
+    <div aria-hidden className="pointer-events-none fixed inset-0 z-0 isolate overflow-hidden">
       <div className="absolute inset-0 bg-background" />
 
       {/* One continuous starfield behind every section, not inside the hero image. */}
