@@ -16,18 +16,18 @@ export function Hero() {
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-8 lg:px-8">
         <div className="flex flex-col items-start gap-6">
           <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium text-primary">
+            <span className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/[0.08] px-4 py-1.5 text-xs font-medium text-primary">
               <Sparkles className="size-3.5" />
               {profile.role}
             </span>
           </Reveal>
 
-          <Reveal delay={80}>
+          <Reveal delay={60}>
             <h1 className="font-display text-4xl font-bold leading-[1.05] tracking-tight text-balance sm:text-6xl lg:text-7xl">
-              {hero.headlineLines.map((line, i) => (
+              {hero.headlineLines.map((line, index) => (
                 <span key={line} className="block">
-                  {i === hero.headlineLines.length - 1 ? (
-                    <span className="gradient-text text-glow">{line}</span>
+                  {index === hero.headlineLines.length - 1 ? (
+                    <span className="gradient-text">{line}</span>
                   ) : (
                     line
                   )}
@@ -36,19 +36,19 @@ export function Hero() {
             </h1>
           </Reveal>
 
-          <Reveal delay={160}>
+          <Reveal delay={120}>
             <p className="max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
               {hero.subheadline}
             </p>
           </Reveal>
 
-          <Reveal delay={220}>
-            <p className="max-w-xl text-pretty text-sm leading-relaxed text-muted-foreground/80">
+          <Reveal delay={170}>
+            <p className="max-w-xl text-pretty text-sm leading-relaxed text-muted-foreground/85">
               {hero.intro}
             </p>
           </Reveal>
 
-          <Reveal delay={280} className="w-full">
+          <Reveal delay={220} className="w-full">
             <div className="flex flex-wrap gap-3">
               {hero.ctas.map((cta) => (
                 <CtaButton
@@ -65,12 +65,12 @@ export function Hero() {
             </div>
           </Reveal>
 
-          <Reveal delay={340} className="w-full">
+          <Reveal delay={270} className="w-full">
             <ul className="flex flex-wrap gap-2 pt-2">
               {hero.tags.map((tag) => (
                 <li
                   key={tag}
-                  className="rounded-full border border-border bg-secondary/40 px-3 py-1 text-xs font-medium text-muted-foreground"
+                  className="rounded-full border border-border/80 bg-secondary/30 px-3 py-1 text-xs font-medium text-muted-foreground"
                 >
                   {tag}
                 </li>
@@ -79,31 +79,30 @@ export function Hero() {
           </Reveal>
         </div>
 
-        {/* Profile image */}
-        <Reveal delay={200} className="mx-auto w-full max-w-sm lg:max-w-none">
+        <Reveal delay={150} className="mx-auto w-full max-w-sm lg:max-w-none">
           <div className="relative">
             <div
-              className="absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-primary/30 via-accent/20 to-transparent blur-2xl"
+              className="absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-primary/18 via-accent/10 to-transparent blur-2xl"
               aria-hidden
             />
-            <div className="relative overflow-hidden rounded-[1.75rem] border border-border glass p-2">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[1.4rem]">
+            <div className="relative overflow-hidden rounded-[1.7rem] border border-border/80 bg-card/35 p-2">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[1.25rem]">
                 <Image
                   src={profile.photo || "/placeholder.svg"}
                   alt={profile.photoAlt}
                   fill
                   priority
                   sizes="(max-width: 1024px) 90vw, 40vw"
-                  className="object-cover"
+                  className="hero-photo object-cover"
                 />
                 <div
-                  className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent"
+                  className="absolute inset-0 bg-gradient-to-t from-background/55 via-transparent to-transparent"
                   aria-hidden
                 />
               </div>
             </div>
-            {/* floating stat chip */}
-            <div className="absolute -bottom-5 -left-4 hidden rounded-2xl border border-border glass px-4 py-3 sm:block">
+
+            <div className="absolute -bottom-5 -left-4 hidden rounded-2xl border border-border/80 bg-card/90 px-4 py-3 shadow-xl backdrop-blur-xl sm:block">
               <p className="font-display text-2xl font-bold text-foreground">
                 {profile.name.split(" ")[0]}
               </p>
