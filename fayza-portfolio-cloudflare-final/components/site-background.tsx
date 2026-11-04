@@ -1,18 +1,16 @@
 /**
- * Fixed, decorative page background: subtle grid + soft purple glows.
- * Kept purely CSS-driven for good performance.
+ * Fixed, decorative page background.
+ * The grid and ambient color are intentionally restrained so content stays dominant.
  */
 export function SiteBackground() {
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
       <div className="absolute inset-0 bg-background" />
-      <div className="absolute inset-0 bg-grid opacity-70" />
-      {/* radial vignette so the grid fades toward edges */}
-      <div className="absolute inset-0 [background:radial-gradient(circle_at_center,transparent_35%,var(--background)_95%)]" />
-      {/* soft violet glows */}
-      <div className="absolute -top-32 left-1/4 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-primary/20 blur-[120px]" />
-      <div className="absolute top-1/3 right-0 h-[24rem] w-[24rem] rounded-full bg-accent/15 blur-[120px]" />
-      <div className="absolute bottom-0 left-0 h-[22rem] w-[22rem] rounded-full bg-primary/10 blur-[120px]" />
+      <div className="absolute inset-0 bg-grid opacity-45" />
+      <div className="absolute inset-0 [background:radial-gradient(ellipse_at_50%_8%,transparent_0%,var(--background)_82%)]" />
+      <div className="absolute -top-48 left-[18%] h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-primary/12 blur-[140px]" />
+      <div className="absolute right-[-10rem] top-[38%] h-[24rem] w-[24rem] rounded-full bg-accent/8 blur-[130px]" />
+      <div className="absolute bottom-[-12rem] left-[8%] h-[22rem] w-[22rem] rounded-full bg-primary/8 blur-[130px]" />
     </div>
   )
 }
