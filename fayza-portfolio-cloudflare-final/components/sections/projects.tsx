@@ -32,9 +32,9 @@ export function Projects() {
           </div>
         </Reveal>
 
-        {filteredFeatured.length > 0 ? <div className="mt-7 grid gap-5 sm:mt-10 sm:grid-cols-2 sm:gap-6">{filteredFeatured.map((project,index)=><Reveal key={project.slug} delay={(index%2)*65}><ProjectCard project={project} onOpen={setSelected} variant="featured" /></Reveal>)}</div> : null}
+        {filteredFeatured.length > 0 ? <div key={active + "-featured"} className="filter-panel mt-7 grid gap-5 sm:mt-10 sm:grid-cols-2 sm:gap-6">{filteredFeatured.map((project,index)=><Reveal key={project.slug} delay={(index%2)*65}><ProjectCard project={project} onOpen={setSelected} variant="featured" /></Reveal>)}</div> : null}
 
-        {filteredOther.length > 0 ? <div className="mt-12 sm:mt-14"><Reveal><h3 className="font-display text-xl font-bold sm:text-2xl">Other Projects</h3><p className="mt-1 text-sm text-muted-foreground">Smaller builds, training work, and additional case studies.</p></Reveal><div className="mt-5 grid gap-5 sm:mt-6 sm:grid-cols-2 lg:grid-cols-3">{filteredOther.map((project,index)=><Reveal key={project.slug} delay={(index%3)*55}><ProjectCard project={project} onOpen={setSelected} variant="compact" /></Reveal>)}</div></div> : null}
+        {filteredOther.length > 0 ? <div className="mt-12 sm:mt-14"><Reveal><h3 className="font-display text-xl font-bold sm:text-2xl">Other Projects</h3><p className="mt-1 text-sm text-muted-foreground">Smaller builds, training work, and additional case studies.</p></Reveal><div key={active + "-other"} className="filter-panel mt-5 grid gap-5 sm:mt-6 sm:grid-cols-2 lg:grid-cols-3">{filteredOther.map((project,index)=><Reveal key={project.slug} delay={(index%3)*55}><ProjectCard project={project} onOpen={setSelected} variant="compact" /></Reveal>)}</div></div> : null}
 
         {!hasResults ? <p className="mt-12 text-center text-sm text-muted-foreground">No projects in this category yet.</p> : null}
       </div>
