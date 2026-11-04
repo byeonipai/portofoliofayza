@@ -42,8 +42,6 @@ function MagneticLink({ href, children, variant, external }: {
   variant: "primary" | "secondary"
   external?: boolean
 }) {
-  const ref = useRef<HTMLAnchorElement>(null)
-
   const move = (event: React.PointerEvent<HTMLAnchorElement>) => {
     if (event.pointerType !== "mouse") return
     const rect = event.currentTarget.getBoundingClientRect()
@@ -52,13 +50,12 @@ function MagneticLink({ href, children, variant, external }: {
     event.currentTarget.style.transform = "translate(" + dx * .16 + "px," + dy * .2 + "px)"
   }
 
-  const reset = () => {
-    if (ref.current) ref.current.style.transform = ""
+  const reset = (event: React.PointerEvent<HTMLAnchorElement>) => {
+    event.currentTarget.style.transform = ""
   }
 
   return (
     <CtaButton
-      ref={undefined as never}
       href={href}
       variant={variant}
       size="lg"
