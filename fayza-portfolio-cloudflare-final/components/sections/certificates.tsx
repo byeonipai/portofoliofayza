@@ -67,7 +67,7 @@ export function Certificates() {
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((cert, index) => (
             <Reveal key={cert.id} delay={(index % 3) * 80}>
-              <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card/50 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50">
+              <article className="interactive-card group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card/50">
                 {/* Certificate thumbnail */}
                 <button
                   type="button"
@@ -80,7 +80,7 @@ export function Certificates() {
                     alt={`${cert.title} certificate`}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-contain p-4 transition-transform duration-500 group-hover:scale-[1.02]"
+                    className="certificate-image object-contain p-4"
                   />
 
                   {/* Hover overlay */}
