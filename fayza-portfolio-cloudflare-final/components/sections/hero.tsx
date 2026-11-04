@@ -1,8 +1,8 @@
-import Image from "next/image"
 import { ArrowRight, Download, Sparkles } from "lucide-react"
 import { CtaButton } from "@/components/cta-button"
 import { Reveal } from "@/components/reveal"
 import { hero, profile } from "@/lib/content"
+import { ProfileFlipCard } from "@/components/profile-flip-card"
 
 const ctaIcon = (label: string) => {
   if (label.toLowerCase().includes("download")) return <Download className="size-4 shrink-0" />
@@ -101,31 +101,7 @@ export function Hero() {
         </div>
 
         <Reveal delay={240} variant="scale" className="mx-auto w-full max-w-xs sm:max-w-sm lg:max-w-none">
-          <div className="relative">
-            <div
-              className="ambient-drift absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-primary/18 via-accent/10 to-transparent blur-2xl"
-              aria-hidden
-            />
-            <div className="relative z-10 overflow-hidden rounded-[1.7rem] border border-border/80 bg-card/35 p-2">
-              <div className="relative aspect-[5/4] overflow-hidden rounded-[1.25rem] sm:aspect-[4/5]">
-                <Image
-                  src={profile.photo || "/placeholder.svg"}
-                  alt={profile.photoAlt}
-                  fill
-                  priority
-                  sizes="(max-width: 640px) 320px, (max-width: 1024px) 384px, 40vw"
-                  className="hero-photo object-cover object-[center_25%] sm:object-center"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/35 via-transparent to-transparent" aria-hidden />
-              </div>
-            </div>
-            <div className="float-soft absolute -bottom-5 -left-4 z-20 hidden rounded-2xl border border-border/80 bg-card/90 px-4 py-3 shadow-xl backdrop-blur-xl sm:block">
-              <p className="font-display text-2xl font-bold text-foreground">
-                {profile.name.split(" ")[0]}
-              </p>
-              <p className="text-xs text-muted-foreground">Information Systems Graduate</p>
-            </div>
-          </div>
+          <ProfileFlipCard />
         </Reveal>
       </div>
     </section>
