@@ -20,7 +20,7 @@ export function Skills() {
           {skillGroups.map((group, index) => <Reveal key={group.category} delay={(index % 3) * 55}>
             <article className="h-full rounded-3xl border border-border/80 bg-card/35 p-6">
               <div className="flex items-center gap-3"><span className="flex size-10 items-center justify-center rounded-xl border border-primary/20 bg-primary/[0.08] text-primary">{categoryIcon[group.category] ?? <Boxes className="size-5" />}</span><h3 className="font-display text-base font-semibold">{group.category}</h3></div>
-              <ul className="mt-5 flex flex-wrap gap-2">{group.skills.map(skill => <li key={skill} className="rounded-lg border border-border/80 bg-secondary/25 px-3 py-1.5 text-sm text-muted-foreground transition-colors duration-150 hover:border-primary/30 hover:text-foreground">{skill}</li>)}</ul>
+              <ul className="mt-5 flex flex-wrap gap-2">{group.skills.map(skill => <li key={skill} className="skill-chip rounded-lg border border-border/80 bg-secondary/25 px-3 py-1.5 text-sm text-muted-foreground">{skill}</li>)}</ul>
             </article>
           </Reveal>)}
         </div>
