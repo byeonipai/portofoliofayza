@@ -47,95 +47,101 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/*
-  Portfolio theme: dark charcoal base with a soft violet / lavender accent.
-  This site is dark-only, so both :root and .dark share the same values.
-*/
 :root,
 .dark {
   color-scheme: dark;
-  --background: oklch(0.16 0.015 285);
-  --foreground: oklch(0.97 0.005 285);
-  --card: oklch(0.2 0.02 285);
-  --card-foreground: oklch(0.97 0.005 285);
-  --popover: oklch(0.19 0.02 285);
-  --popover-foreground: oklch(0.97 0.005 285);
-  --primary: oklch(0.68 0.17 300);
-  --primary-foreground: oklch(0.16 0.02 285);
-  --secondary: oklch(0.27 0.03 288);
-  --secondary-foreground: oklch(0.97 0.005 285);
-  --muted: oklch(0.25 0.02 288);
-  --muted-foreground: oklch(0.72 0.03 290);
-  --accent: oklch(0.72 0.15 305);
-  --accent-foreground: oklch(0.16 0.02 285);
+  --background: oklch(0.15 0.012 285);
+  --foreground: oklch(0.96 0.006 285);
+  --card: oklch(0.19 0.014 285);
+  --card-foreground: oklch(0.96 0.006 285);
+  --popover: oklch(0.185 0.014 285);
+  --popover-foreground: oklch(0.96 0.006 285);
+  --primary: oklch(0.72 0.12 295);
+  --primary-foreground: oklch(0.15 0.012 285);
+  --secondary: oklch(0.235 0.014 285);
+  --secondary-foreground: oklch(0.96 0.006 285);
+  --muted: oklch(0.225 0.012 285);
+  --muted-foreground: oklch(0.69 0.015 285);
+  --accent: oklch(0.76 0.095 300);
+  --accent-foreground: oklch(0.15 0.012 285);
   --destructive: oklch(0.62 0.2 25);
-  --border: oklch(0.75 0.05 300 / 14%);
-  --input: oklch(0.75 0.05 300 / 18%);
-  --ring: oklch(0.68 0.17 300);
-  --chart-1: oklch(0.68 0.17 300);
-  --chart-2: oklch(0.75 0.13 320);
-  --chart-3: oklch(0.6 0.15 275);
-  --chart-4: oklch(0.82 0.1 310);
-  --chart-5: oklch(0.55 0.12 295);
-  --radius: 0.75rem;
-  --sidebar: oklch(0.2 0.02 285);
-  --sidebar-foreground: oklch(0.97 0.005 285);
-  --sidebar-primary: oklch(0.68 0.17 300);
-  --sidebar-primary-foreground: oklch(0.97 0.005 285);
-  --sidebar-accent: oklch(0.27 0.03 288);
-  --sidebar-accent-foreground: oklch(0.97 0.005 285);
-  --sidebar-border: oklch(0.75 0.05 300 / 14%);
-  --sidebar-ring: oklch(0.68 0.17 300);
+  --border: oklch(0.76 0.015 285 / 13%);
+  --input: oklch(0.76 0.015 285 / 18%);
+  --ring: oklch(0.72 0.12 295);
+  --chart-1: oklch(0.72 0.12 295);
+  --chart-2: oklch(0.77 0.09 310);
+  --chart-3: oklch(0.62 0.1 275);
+  --chart-4: oklch(0.82 0.07 305);
+  --chart-5: oklch(0.55 0.08 290);
+  --radius: 0.9rem;
+  --sidebar: oklch(0.19 0.014 285);
+  --sidebar-foreground: oklch(0.96 0.006 285);
+  --sidebar-primary: oklch(0.72 0.12 295);
+  --sidebar-primary-foreground: oklch(0.96 0.006 285);
+  --sidebar-accent: oklch(0.235 0.014 285);
+  --sidebar-accent-foreground: oklch(0.96 0.006 285);
+  --sidebar-border: oklch(0.76 0.015 285 / 13%);
+  --sidebar-ring: oklch(0.72 0.12 295);
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   html {
     scroll-behavior: smooth;
-    /* offset for the sticky navbar when jumping to anchors */
     scroll-padding-top: 5rem;
   }
+
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    min-width: 320px;
+  }
+
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  ::selection {
+    color: var(--foreground);
+    background: oklch(0.72 0.12 295 / 28%);
   }
 }
 
 @layer utilities {
-  /* Subtle developer-style grid background */
   .bg-grid {
-    background-image: linear-gradient(
-        to right,
-        oklch(0.75 0.05 300 / 6%) 1px,
-        transparent 1px
-      ),
-      linear-gradient(to bottom, oklch(0.75 0.05 300 / 6%) 1px, transparent 1px);
-    background-size: 56px 56px;
+    background-image:
+      linear-gradient(to right, oklch(0.76 0.015 285 / 4%) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(0.76 0.015 285 / 4%) 1px, transparent 1px);
+    background-size: 64px 64px;
   }
 
-  /* Soft radial purple glow */
   .glow-purple {
-    box-shadow: 0 0 60px -12px oklch(0.68 0.17 300 / 45%);
+    box-shadow: 0 0 60px -12px oklch(0.72 0.12 295 / 28%);
   }
 
-  .text-glow {
-    text-shadow: 0 0 32px oklch(0.68 0.17 300 / 40%);
-  }
-
-  /* Translucent glass panel */
   .glass {
-    background: oklch(0.22 0.02 285 / 60%);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: oklch(0.18 0.012 285 / 78%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
   }
 
   .gradient-text {
     background: linear-gradient(
-      100deg,
-      oklch(0.97 0.005 285) 0%,
-      oklch(0.78 0.14 305) 55%,
-      oklch(0.68 0.17 300) 100%
+      110deg,
+      oklch(0.97 0.004 285) 0%,
+      oklch(0.84 0.075 300) 58%,
+      oklch(0.72 0.12 295) 100%
     );
     -webkit-background-clip: text;
     background-clip: text;
@@ -144,27 +150,175 @@
   }
 }
 
-/* Scroll-reveal animation (progressively enhanced via IntersectionObserver) */
-@layer utilities {
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-    will-change: opacity, transform;
+/* Scroll reveal is progressively enhanced: content stays visible without JavaScript. */
+.reveal {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 540ms var(--ease-out),
+    transform 540ms var(--ease-out);
+}
+
+html[data-motion-ready="true"] .reveal:not(.is-visible) {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+html[data-motion-ready="true"] .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reusable interaction tokens for elements that are genuinely interactive. */
+.interactive-card {
+  transition:
+    transform 220ms var(--ease-out),
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    background-color 220ms ease;
+}
+
+.interactive-card:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+.interactive-control {
+  transition:
+    transform 140ms var(--ease-out),
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    color 180ms ease;
+}
+
+.interactive-control:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .interactive-card:hover {
+    transform: translateY(-3px);
+    border-color: oklch(0.72 0.12 295 / 42%);
+    box-shadow: 0 18px 44px -32px oklch(0.72 0.12 295 / 42%);
   }
-  .reveal.is-visible {
-    opacity: 1;
+
+  .group:hover .project-card-image {
+    transform: scale(1.025);
+  }
+
+  .group:hover .certificate-image {
+    transform: scale(1.015);
+  }
+}
+
+.project-card-image,
+.certificate-image {
+  transition: transform 320ms var(--ease-out);
+}
+
+.hero-photo {
+  clip-path: inset(0 0 0 0 round 1.25rem);
+  transform: scale(1);
+  transition:
+    clip-path 620ms var(--ease-out),
+    transform 620ms var(--ease-out);
+}
+
+html[data-motion-ready="true"] .reveal:not(.is-visible) .hero-photo {
+  clip-path: inset(0 0 100% 0 round 1.25rem);
+  transform: scale(1.025);
+}
+
+html[data-motion-ready="true"] .reveal.is-visible .hero-photo {
+  clip-path: inset(0 0 0 0 round 1.25rem);
+  transform: scale(1);
+}
+
+/* The mobile navigation enters from its own top edge instead of animating height. */
+.mobile-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  border-top: 1px solid var(--border);
+  background: oklch(0.17 0.012 285 / 96%);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 18px 36px -28px rgb(0 0 0 / 80%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-8px) scale(0.985);
+  transform-origin: top center;
+  transition:
+    opacity 180ms var(--ease-out),
+    transform 180ms var(--ease-out),
+    visibility 0s linear 180ms;
+}
+
+.mobile-menu[data-open="true"] {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+  transition-delay: 0s;
+}
+
+/* Modal surfaces use short, interruptible transitions with a visible starting shape. */
+.modal-backdrop {
+  opacity: 0;
+  transition: opacity 180ms var(--ease-out);
+}
+
+.modal-backdrop[data-open="true"] {
+  opacity: 1;
+}
+
+.modal-panel {
+  opacity: 0;
+  transform: translateY(8px) scale(0.96);
+  transition:
+    opacity 220ms var(--ease-out),
+    transform 220ms var(--ease-out);
+}
+
+.modal-panel[data-open="true"] {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    transition-duration: 160ms;
+  }
+
+  html[data-motion-ready="true"] .reveal:not(.is-visible) {
     transform: none;
   }
-  @media (prefers-reduced-motion: reduce) {
-    .reveal {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
-    html {
-      scroll-behavior: auto;
-    }
+
+  .hero-photo {
+    clip-path: none !important;
+    transform: none !important;
+    transition-duration: 160ms;
+  }
+
+  .interactive-card,
+  .interactive-control,
+  .project-card-image,
+  .certificate-image,
+  .mobile-menu,
+  .modal-backdrop,
+  .modal-panel {
+    transition-duration: 160ms;
+  }
+
+  .interactive-card:hover,
+  .interactive-card:active,
+  .interactive-control:active {
+    transform: none;
   }
 }
