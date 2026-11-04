@@ -16,7 +16,7 @@ export function About() {
         </Reveal>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-[1.4fr_1fr]">
-          <Reveal delay={80} className="flex flex-col gap-5">
+          <Reveal delay={120} variant="left" className="flex flex-col gap-5">
             {about.paragraphs.map((p) => (
               <p key={p} className="text-pretty text-base leading-relaxed text-muted-foreground">
                 {p}
@@ -38,7 +38,7 @@ export function About() {
             </div>
           </Reveal>
 
-          <Reveal delay={160}>
+          <Reveal delay={260} variant="right">
             <div className="relative h-full overflow-hidden rounded-3xl border border-border glass p-6 sm:p-7">
               <div
                 className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-primary/20 blur-3xl"
