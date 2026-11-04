@@ -33,6 +33,7 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
       />
       <SiteBackground />
+      <div className="relative z-10">
       <Navbar />
       <main>
         <Hero />
@@ -45,6 +46,7 @@ export default function Page() {
         <Contact />
       </main>
       <Footer />
+      </div>
     </>
   )
 }
