@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { ArrowRight, Download, Sparkles } from "lucide-react"
 import { CtaButton } from "@/components/cta-button"
-import { ProfileFlipCard } from "@/components/profile-flip-card"
+import { ProfileVisual } from "@/components/profile-visual"
 import { hero, profile } from "@/lib/content"
 
 const rotatingWords = ["Frontend", "Testing", "Figma", "REST API"]
@@ -121,7 +121,7 @@ export function Hero() {
         </div>
 
         <div className="relative z-10 mx-auto w-full max-w-[460px] lg:max-w-none">
-          <ProfileFlipCard />
+          <ProfileVisual />
         </div>
       </div>
     </section>
