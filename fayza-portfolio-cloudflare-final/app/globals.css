@@ -532,45 +532,67 @@ html[data-motion-ready="true"] .reveal.is-visible { opacity: 1; transform: none;
 }
 
 
-/* Global animated starfield, mounted once behind all page sections. */
+/* Global purple starfield: visible, layered, continuously scrolling. */
 .stars-background {
   position: absolute;
   inset: 0;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  touch-action: none;
+  touch-action: pan-y;
 }
 .stars-parallax {
   position: absolute;
-  inset: -6%;
+  inset: -8%;
+  width: 116%;
+  height: 116%;
   will-change: transform;
 }
 .stars-layer {
   position: absolute;
   inset: 0;
+  overflow: hidden;
   animation-name: starfield-rise;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-play-state: var(--star-play-state, running);
+  will-change: transform;
 }
-.stars-layer-2 { opacity: .7; }
-.stars-layer-3 { opacity: .5; }
+.stars-plane {
+  position: absolute;
+  inset: 0;
+  height: 2000px;
+}
+.stars-plane:nth-child(2) {
+  top: 2000px;
+}
+.stars-layer-1 { opacity: .88; }
+.stars-layer-2 { opacity: .92; }
+.stars-layer-3 { opacity: .96; }
 .star-dot {
   position: absolute;
   display: block;
   border-radius: 9999px;
-  background: var(--star-color, #e7ddff);
-  box-shadow: 0 0 7px color-mix(in srgb, var(--star-color, #e7ddff) 75%, transparent);
-  animation: star-twinkle 4.8s ease-in-out infinite;
+  background: var(--star-color, #a855f7);
+  box-shadow:
+    0 0 5px var(--star-glow, #9333ea),
+    0 0 11px color-mix(in srgb, var(--star-glow, #9333ea) 75%, transparent),
+    0 0 18px color-mix(in srgb, var(--star-color, #a855f7) 35%, transparent);
+  opacity: var(--star-opacity, .9);
+  animation: star-twinkle 3.8s ease-in-out infinite;
 }
 @keyframes starfield-rise {
   from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(0, -18%, 0); }
+  to { transform: translate3d(0, -2000px, 0); }
 }
 @keyframes star-twinkle {
-  0%, 100% { opacity: .3; scale: .82; }
-  50% { opacity: 1; scale: 1.18; }
+  0%, 100% { filter: brightness(.78); scale: .86; }
+  50% { filter: brightness(1.55); scale: 1.22; }
+}
+@media (max-width: 639px) {
+  .stars-layer-1 { opacity: .76; }
+  .stars-layer-2 { opacity: .84; }
+  .stars-layer-3 { opacity: .9; }
 }
 @media (prefers-reduced-motion: reduce) {
   .stars-layer, .star-dot { animation: none !important; }
