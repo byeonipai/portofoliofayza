@@ -2,7 +2,6 @@ import Image from "next/image"
 import { ArrowRight, Download, Sparkles } from "lucide-react"
 import { CtaButton } from "@/components/cta-button"
 import { Reveal } from "@/components/reveal"
-import { StarsBackground } from "@/components/stars-background"
 import { hero, profile } from "@/lib/content"
 
 const ctaIcon = (label: string) => {
@@ -102,8 +101,7 @@ export function Hero() {
         </div>
 
         <Reveal delay={240} variant="scale" className="mx-auto w-full max-w-xs sm:max-w-sm lg:max-w-none">
-          <div className="relative isolate">
-            <StarsBackground className="pointer-events-auto" speed={42} factor={0.045} />
+          <div className="relative">
             <div
               className="ambient-drift absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-primary/18 via-accent/10 to-transparent blur-2xl"
               aria-hidden
@@ -121,7 +119,7 @@ export function Hero() {
                 <div className="absolute inset-0 bg-gradient-to-t from-background/35 via-transparent to-transparent" aria-hidden />
               </div>
             </div>
-            <div className="float-soft absolute -bottom-5 -left-4 hidden rounded-2xl border border-border/80 bg-card/90 px-4 py-3 shadow-xl backdrop-blur-xl sm:block">
+            <div className="float-soft absolute -bottom-5 -left-4 z-20 hidden rounded-2xl border border-border/80 bg-card/90 px-4 py-3 shadow-xl backdrop-blur-xl sm:block">
               <p className="font-display text-2xl font-bold text-foreground">
                 {profile.name.split(" ")[0]}
               </p>

@@ -7,7 +7,6 @@ type Star = {
   left: string
   top: string
   delay: string
-  duration: string
   opacity: number
 }
 
@@ -18,15 +17,19 @@ type StarsBackgroundProps = {
   starColor?: string
 }
 
-/** Three lightweight CSS star layers with spring-based pointer/touch parallax. */
+/**
+ * Global decorative starfield.
+ * Pointer tracking is attached to window so the background never blocks links,
+ * buttons, scrolling, or other page interactions.
+ */
 export function StarsBackground({
   className = "",
-  speed = 50,
-  factor = 0.035,
-  starColor = "#eee8ff",
+  speed = 48,
+  factor = 0.018,
+  starColor = "#e7ddff",
 }: StarsBackgroundProps) {
   const rootRef = useRef<HTMLDivElement>(null)
-  const [active, setActive] = useState(false)
+  const [active, setActive] = useState(true)
   const [reducedMotion, setReducedMotion] = useState(false)
   const pointerX = useMotionValue(0)
   const pointerY = useMotionValue(0)
@@ -44,67 +47,66 @@ export function StarsBackground({
           left: (fract(a) * 100).toFixed(2) + "%",
           top: (fract(b) * 100).toFixed(2) + "%",
           delay: (-fract(c) * speed).toFixed(2) + "s",
-          duration: (speed * (1 + seed * 0.12)).toFixed(2) + "s",
-          opacity: 0.28 + fract(a + b) * 0.62,
+          opacity: 0.35 + fract(a + b) * 0.55,
         }
       })
+
     return [
-      { size: 1, duration: speed, stars: makeStars(54, 1) },
-      { size: 2, duration: speed * 2, stars: makeStars(30, 2) },
-      { size: 3, duration: speed * 3, stars: makeStars(16, 3) },
+      { size: 1, duration: speed, stars: makeStars(64, 1) },
+      { size: 2, duration: speed * 2, stars: makeStars(36, 2) },
+      { size: 3, duration: speed * 3, stars: makeStars(20, 3) },
     ]
   }, [speed])
 
   useEffect(() => {
-    const node = rootRef.current
-    if (!node) return
     const media = window.matchMedia("(prefers-reduced-motion: reduce)")
     const updateMotion = () => setReducedMotion(media.matches)
+    const updateVisibility = () => setActive(!document.hidden)
+
     updateMotion()
+    updateVisibility()
     media.addEventListener?.("change", updateMotion)
+    document.addEventListener("visibilitychange", updateVisibility)
 
-    const observer = new IntersectionObserver(
-      ([entry]) => setActive(entry.isIntersecting),
-      { threshold: 0 },
-    )
-    observer.observe(node)
-
-    const onVisibility = () => setActive(!document.hidden && node.isConnected && node.getBoundingClientRect().bottom > 0 && node.getBoundingClientRect().top < window.innerHeight)
-    document.addEventListener("visibilitychange", onVisibility)
-    return () => {
-      observer.disconnect()
-      media.removeEventListener?.("change", updateMotion)
-      document.removeEventListener("visibilitychange", onVisibility)
+    const moveParallax = (event: PointerEvent) => {
+      if (reducedMotion || event.pointerType !== "mouse") return
+      const dx = event.clientX - window.innerWidth / 2
+      const dy = event.clientY - window.innerHeight / 2
+      pointerX.set(dx * factor)
+      pointerY.set(dy * factor)
     }
-  }, [])
 
-  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (reducedMotion) return
-    const bounds = event.currentTarget.getBoundingClientRect()
-    const dx = event.clientX - (bounds.left + bounds.width / 2)
-    const dy = event.clientY - (bounds.top + bounds.height / 2)
-    pointerX.set(dx * factor)
-    pointerY.set(dy * factor)
-  }
+    const tapParallax = (event: PointerEvent) => {
+      if (reducedMotion || event.pointerType !== "touch") return
+      const dx = event.clientX - window.innerWidth / 2
+      const dy = event.clientY - window.innerHeight / 2
+      pointerX.set(dx * factor * 1.5)
+      pointerY.set(dy * factor * 1.5)
+    }
 
-  const handlePointerLeave = () => {
-    pointerX.set(0)
-    pointerY.set(0)
-  }
+    const resetParallax = () => {
+      pointerX.set(0)
+      pointerY.set(0)
+    }
 
-  const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType !== "touch" || reducedMotion) return
-    handlePointerMove(event)
-  }
+    window.addEventListener("pointermove", moveParallax, { passive: true })
+    window.addEventListener("pointerdown", tapParallax, { passive: true })
+    window.addEventListener("blur", resetParallax)
+
+    return () => {
+      media.removeEventListener?.("change", updateMotion)
+      document.removeEventListener("visibilitychange", updateVisibility)
+      window.removeEventListener("pointermove", moveParallax)
+      window.removeEventListener("pointerdown", tapParallax)
+      window.removeEventListener("blur", resetParallax)
+    }
+  }, [factor, pointerX, pointerY, reducedMotion])
 
   return (
     <div
       ref={rootRef}
       aria-hidden="true"
       className={"stars-background " + className}
-      onPointerMove={handlePointerMove}
-      onPointerLeave={handlePointerLeave}
-      onPointerDown={handlePointerDown}
       style={{ "--star-color": starColor } as CSSProperties}
     >
       <motion.div className="stars-parallax" style={{ x: springX, y: springY }}>
@@ -115,7 +117,8 @@ export function StarsBackground({
             style={{
               animationDuration: layer.duration + "s",
               animationPlayState: active && !reducedMotion ? "running" : "paused",
-            }}
+              "--star-play-state": active && !reducedMotion ? "running" : "paused",
+            } as CSSProperties}
           >
             {layer.stars.map((star, index) => (
               <i
@@ -134,7 +137,6 @@ export function StarsBackground({
           </div>
         ))}
       </motion.div>
-      <div className="stars-vignette" />
     </div>
   )
 }
